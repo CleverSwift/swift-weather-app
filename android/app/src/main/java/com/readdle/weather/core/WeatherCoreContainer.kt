@@ -1,9 +1,10 @@
 package com.readdle.weather.core
 
+import com.readdle.codegen.anotation.SwiftFunc
 import com.readdle.codegen.anotation.SwiftReference
 
 @SwiftReference
-class MetaWeatherProvider private constructor() {
+class WeatherCoreContainer private constructor() {
 
     // Swift JNI private native pointer
     private val nativePointer = 0L
@@ -12,8 +13,8 @@ class MetaWeatherProvider private constructor() {
     external fun release()
 
     companion object {
-
-        @JvmStatic
-        external fun init(): MetaWeatherProvider
+        @JvmStatic @SwiftFunc("createContainer(basePath:)")
+		external fun createContainer(basePath: String)
     }
+
 }

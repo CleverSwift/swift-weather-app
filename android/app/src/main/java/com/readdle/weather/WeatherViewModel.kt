@@ -7,10 +7,10 @@ import androidx.lifecycle.ViewModel
 import com.readdle.weather.core.*
 
 class WeatherViewModel @ViewModelInject constructor(
-    db: JSONStorage,
-    provider: MetaWeatherProvider) : ViewModel(), WeatherRepositoryDelegateAndroid {
+    repositoryFactory: WeatherAppModule.WeatherRepositoryFactory
+) : ViewModel(), WeatherRepositoryDelegateAndroid {
 
-    private val weatherRepository = WeatherRepository.init(db, provider, this)
+    private val weatherRepository = repositoryFactory.createRepository(this)
 
     private val errorDescription = MutableLiveData<String>()
     private val searchSuggestion = MutableLiveData<List<Location>>()

@@ -7,15 +7,15 @@ import com.readdle.codegen.anotation.SwiftDelegate
 interface WeatherRepositoryDelegateAndroid {
 
     @SwiftCallbackFunc("onSearchSuggestionChanged(locations:)")
-    fun onSearchSuggestionChanged(locations: ArrayList<Location>)
+	fun onSearchSuggestionChanged(locations: ArrayList<Location>)
 
-    @SwiftCallbackFunc("onSavedLocationChanged(locations:)")
-    fun onSavedLocationChanged(locations: ArrayList<Location>)
+	@SwiftCallbackFunc("onSavedLocationChanged(locations:)")
+	fun onSavedLocationChanged(locations: ArrayList<Location>)
 
-    @SwiftCallbackFunc("onError(errorDescription:)")
-    fun onError(errorDescription: String)
+	@SwiftCallbackFunc("onWeatherChanged(woeId:weather:)")
+	fun onWeatherChanged(woeId: Long, weather: Weather)
 
-    @SwiftCallbackFunc("onWeatherChanged(woeId:weather:)")
-    fun onWeatherChanged(woeId: Long, weather: Weather)
+	@SwiftCallbackFunc("onError(errorDescription:)")
+	fun onError(errorDescription: String)
 
 }

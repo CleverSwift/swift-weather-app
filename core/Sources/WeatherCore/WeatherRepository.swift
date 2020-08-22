@@ -19,7 +19,7 @@ public class WeatherRepository {
 
     private let dbQueue = OperationQueue()
 
-    public init(db: WeatherDatabase, provider: WeatherProvider, delegate: WeatherRepositoryDelegate) {
+    init(db: WeatherDatabase, provider: WeatherProvider, delegate: WeatherRepositoryDelegate) {
         self.db = db
         self.provider = provider
         self.delegate = delegate

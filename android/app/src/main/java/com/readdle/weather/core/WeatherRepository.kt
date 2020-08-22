@@ -12,24 +12,19 @@ class WeatherRepository private constructor() {
     // Swift JNI release method
     external fun release()
 
-    external fun loadSavedLocations()
+    @SwiftFunc("loadSavedLocations()")
+	external fun loadSavedLocations()
 
-    @SwiftFunc("addLocationToSaved(location:)")
-    external fun addLocationToSaved(location: Location)
+	@SwiftFunc("addLocationToSaved(location:)")
+	external fun addLocationToSaved(location: Location)
 
-    @SwiftFunc("removeSavedLocation(location:)")
-    external fun removeSavedLocation(location: Location)
+	@SwiftFunc("removeSavedLocation(location:)")
+	external fun removeSavedLocation(location: Location)
 
-    @SwiftFunc("searchLocations(query:)")
-    external fun searchLocations(query: String?)
+	@SwiftFunc("searchLocations(query:)")
+	external fun searchLocations(query: String?)
 
-    companion object {
-
-        @JvmStatic
-        @SwiftFunc("init(db:provider:delegate:)")
-        external fun init(db: JSONStorage,
-                          provider: MetaWeatherProvider,
-                          delegate: WeatherRepositoryDelegateAndroid): WeatherRepository
-    }
+	@SwiftFunc("weather(withWoeId:)")
+	external fun weather(woeId: Long)
 
 }

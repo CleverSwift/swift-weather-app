@@ -86,8 +86,8 @@ class WeatherLocationAdapter(private var locations: List<Location>,
             WeatherState.SLEET -> R.drawable.ic_sl
             WeatherState.HAIL -> R.drawable.ic_h
             WeatherState.THUNDERSTORM -> R.drawable.ic_t
-            WeatherState.HEAVY -> R.drawable.ic_hr
-            WeatherState.LIGHT -> R.drawable.ic_lr
+            WeatherState.HEAVY_RAIN -> R.drawable.ic_hr
+            WeatherState.LIGHT_RAIN -> R.drawable.ic_lr
             WeatherState.SHOWERS -> R.drawable.ic_s
             WeatherState.HEAVY_CLOUD -> R.drawable.ic_hc
             WeatherState.LIGHT_CLOUD -> R.drawable.ic_lc

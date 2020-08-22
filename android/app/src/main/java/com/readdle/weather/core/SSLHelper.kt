@@ -13,9 +13,8 @@ class SSLHelper private constructor() {
     external fun release()
 
     companion object {
-
-        @JvmStatic
-        @SwiftFunc("setupCert(basePath:)")
-        external fun setupCert(basePath: String)
+        @JvmStatic @SwiftFunc("setupCert(basePath:)")
+		external fun setupCert(basePath: String)
     }
+
 }

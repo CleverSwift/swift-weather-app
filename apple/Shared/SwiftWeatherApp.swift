@@ -7,9 +7,15 @@
 
 import SwiftUI
 import WeatherCore
+import Swinject
 
 @main
-struct SwiftWeatherApp: App {
+struct SwiftWeatherApp: App, WeatherRepositoryDelegate {
+
+    let container = WeatherCoreContainer.createContainer(basePath: Bundle.main.bundlePath)
+    
+    var repository: WeatherRepository?
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -18,15 +24,25 @@ struct SwiftWeatherApp: App {
     
     init() {
         // Example of WeatherCore usage
-        let provider = MetaWeatherProvider()
-        provider.searchLocations(query: "San") { locations, error in
-            if let error = error {
-                NSLog("Error: %s", error.localizedDescription)
-                return
-            }
-            locations?.forEach {
-                NSLog($0.title)
-            }
+        repository = container.resolve(WeatherRepository.self, argument: self)
+        repository?.searchLocations(query: "San")
+    }
+    
+    func onSearchSuggestionChanged(locations: [Location]) {
+        locations.forEach {
+            NSLog($0.title)
         }
+    }
+    
+    func onSavedLocationChanged(locations: [Location]) {
+    
+    }
+    
+    func onWeatherChanged(woeId: Int64, weather: Weather) {
+        
+    }
+    
+    func onError(errorDescription: String) {
+        NSLog("Error: %s", errorDescription)
     }
 }

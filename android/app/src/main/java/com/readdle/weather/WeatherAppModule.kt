@@ -1,8 +1,9 @@
 package com.readdle.weather
 
 import android.app.Application
-import com.readdle.weather.core.JSONStorage
-import com.readdle.weather.core.MetaWeatherProvider
+import com.readdle.weather.core.SwiftContainer
+import com.readdle.weather.core.WeatherRepository
+import com.readdle.weather.core.WeatherRepositoryDelegateAndroid
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,15 +14,15 @@ import javax.inject.Singleton
 @InstallIn(ApplicationComponent::class)
 object WeatherAppModule {
 
-    @Provides
-    @Singleton
-    fun metaWeatherProvider(): MetaWeatherProvider {
-        return MetaWeatherProvider.init()
+    fun interface WeatherRepositoryFactory {
+        fun createRepository(delegate: WeatherRepositoryDelegateAndroid): WeatherRepository
     }
 
     @Provides
     @Singleton
-    fun jsonStorage(application: Application): JSONStorage {
-        return JSONStorage.init(application.dataDir.absolutePath)
+    fun weatherRepositoryFactory(application: Application): WeatherRepositoryFactory {
+        return WeatherRepositoryFactory {
+            SwiftContainer.init(application.dataDir.absolutePath).resolve(it)
+        }
     }
 }
